@@ -59,3 +59,39 @@ if(Espar(j) == true){
     Console.WriteLine("Deja de estar mamando, no es par");
 }
 */
+
+
+class Vci{
+    static void main(){
+        Stack<string> operadores = new Stack<string>();
+        Stack<string> estatutos = new Stack<string>();
+        Stack<string> direcciones = new Stack<string>();
+
+        int apuntador = 0;
+
+        List<string> vci = new List<string>();
+        List<string> lexemas = new List<string>();
+        List<string> tokens = new List<string>();
+        /*tokens a usar
+        -2 inicio
+        -3 fin
+        -4 leer
+        -5 escribir
+        -9 repetir
+        -10 hasta
+        -51:-70 id, constantes 
+        -73 (
+        -74 )
+        -75 ; */ 
+
+        for(int i = 0; i < tokens.Count; i++){
+            string token = tokens[i];
+            string lexema = lexemas[i];//?
+
+            if(token == "-9"){
+                estatutos.Push(lexema);
+                direcciones.Push(apuntador.ToString());
+            }
+        }
+    }
+}
