@@ -91,6 +91,46 @@ class Vci{
             if(token == "-9"){
                 estatutos.Push(lexema);
                 direcciones.Push(apuntador.ToString());
+            }else if(token == "-2"){
+                //ignorarlo
+            }else if(token == "-4" || token == "-5"){
+                vci.Add(lexema);
+            }else if(token == "-73"){
+                operadores.Push(lexema);
+            }else if(token == "-74"){
+                while(operadores.Peek() != "-73"){
+                    operadores.Pop();
+                    vci.Add(lexema);
+                }
+                operadores.Pop();
+                vci.Add(lexema);
+            }else if(token == "-75"){
+                operadores.Pop();
+                vci.Add(lexema);
+            } else if (lexema == "-3") {
+                /* string condicion = "";
+                string token_siguiente = lexemas[i + 1];
+
+                if (token_siguiente == "-10") {
+                    // Guardar token siguiente momentaneamente
+                    i++;
+                    token_siguiente = lexemas[i + 1];
+                }
+
+                for (int j = i + 1; j < lexemas.Count; j++) {
+                    string lexema_actual = lexemas[j];
+                    condicion += lexema_actual;
+
+                    if (lexema_actual == ";") {
+                        vci.Add(condicion);
+                        vci.Add(direcciones.ToString());
+                        vci.Add("KwHasta");
+                        i = j;
+                        break;
+                    }
+                }*/
+            } else {
+                vci.Add(lexema);
             }
         }
     }

@@ -4,7 +4,7 @@ public class Analizador {
     Token[] tokens;
     Simbolo[]? simbolos; // puede estar nulo
 
-    public static void Main(String[] args) {
+    /*public static void Main(String[] args) {
         Analizador p = new Analizador();
 
         Token[] identificadores = p.getIdentificadores(); // Obtener identificadores
@@ -25,7 +25,7 @@ public class Analizador {
                 Console.WriteLine(arreglo.ElementAt(i));
             }
         }
-    }
+    }*/
 
     Analizador() {
         // Leer tabla de tokens separados por '|'
