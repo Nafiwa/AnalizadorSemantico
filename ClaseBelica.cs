@@ -62,9 +62,10 @@ if(Espar(j) == true){
 
 
 class Vci{
-    static void main(){
+    static void Main(){
         //pilas
         Stack<string> operadores = new Stack<string>();
+        Stack<int> prioridades = new Stack<int>();
         Stack<string> estatutos = new Stack<string>();
         Stack<int> direcciones = new Stack<int>();
 
@@ -83,52 +84,86 @@ class Vci{
         -51:-70 id, constantes 
         -73 (
         -74 )
-        -75 ; */ 
+        -75 ; */
         bool evaluarHasta = false;
 
-        for(int i = 0; i < tokens.Count; i++){
+        for (int i = 0; i < tokens.Count; i++){
             string token = tokens[i];
             string nombreTk = nombresTk[i];//?
-            apuntador = vci.Count-1;
+            apuntador = vci.Count - 1;
 
-            if(token == "-9"){
+            if (token == "-9"){
                 estatutos.Push(nombreTk);
                 direcciones.Push(apuntador);
-            }else if(token == "-2"){ //inicio
+            }else if (token == "-2"){ //inicio
                 //ignorarlo
-            }else if(token == "-4" || token == "-5"){ //leer y escribir
+            }else if (token == "-4" || token == "-5"){ //leer y escribir
                 vci.Add(nombreTk);
-            }else if(token == "-73"){ // (
+            }else if (token == "-73"){ // (
                 operadores.Push(nombreTk);
-            }else if(token == "-74"){ // )
-                while(operadores.Peek() != "-73"){ // (
+            }else if (token == "-74"){ // )
+                while (operadores.Peek() != "-73"){ // (
                     operadores.Pop();
                     vci.Add(nombreTk);
                 }
                 operadores.Pop();
                 vci.Add(nombreTk);
 
-                if(evaluarHasta == true){
+                if (evaluarHasta == true){
                     int dir = direcciones.Pop();
                     vci.Add(dir.ToString()); //dir -> dirección guardada
                     string hasta = estatutos.Pop();
                     vci.Add(hasta);
                     evaluarHasta = false;
                 }
-            }else if(token == "-75"){ // ;
-                while(operadores.Count > 0){
+            }else if (token == "-75"){ // ;
+                while (operadores.Count > 0){
                     operadores.Pop();
                     vci.Add(nombreTk);
                 }
-            } else if (nombreTk == "-3"){ //fin
+            }else if (nombreTk == "-3"){ //fin
                 //ignorar
-                if(tokens[i + 1] == "-10"){
+                if (tokens[i + 1] == "-10"){
                     evaluarHasta = true;
                 }
-            }else {
+            }else if(EsOperador(token) == true){
+                operadores.Push(token); 
+                prioridades.Push(PrioridadDe(token));               
+            }else{
                 vci.Add(nombreTk);
-                
+
+            }
+        }
+        
+        bool EsOperador(string token){
+            switch(token){
+                case "-24" or "-25": return true;
+                case "-31" or "-32": return true;
+                case "-21" or "-22": return true; 
+                case "-33" or "-34": return true;
+                case "-35" or "-36": return true;
+                case "-43": return true;
+                case "-41": return true;
+                case "-42": return true;
+                default : return false;
+            }
+        }
+
+        int PrioridadDe(string operador){
+            
+            switch (operador){
+                case "-21" or "-22": return 60; 
+                case "-24" or "-25": return 50;
+                case "-31" or "-32": return 40;
+                case "-33" or "-34": return 40;
+                case "-35" or "-36": return 40;
+                case "-43": return 30;
+                case "-41": return 20;
+                case "-42": return 10;
+                default : return 0;
+                //case "-25": return 50;
             }
         }
     }
+
 }
