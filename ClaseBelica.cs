@@ -63,14 +63,15 @@ if(Espar(j) == true){
 
 class Vci{
     static void main(){
+        //pilas
         Stack<string> operadores = new Stack<string>();
         Stack<string> estatutos = new Stack<string>();
-        Stack<string> direcciones = new Stack<string>();
+        Stack<int> direcciones = new Stack<int>();
 
         int apuntador = 0;
 
         List<string> vci = new List<string>();
-        List<string> lexemas = new List<string>();
+        List<string> nombresTk = new List<string>();
         List<string> tokens = new List<string>();
         /*tokens a usar
         -2 inicio
@@ -83,54 +84,50 @@ class Vci{
         -73 (
         -74 )
         -75 ; */ 
+        bool evaluarHasta = false;
 
         for(int i = 0; i < tokens.Count; i++){
             string token = tokens[i];
-            string lexema = lexemas[i];//?
+            string nombreTk = nombresTk[i];//?
+            apuntador = vci.Count-1;
 
             if(token == "-9"){
-                estatutos.Push(lexema);
-                direcciones.Push(apuntador.ToString());
-            }else if(token == "-2"){
+                estatutos.Push(nombreTk);
+                direcciones.Push(apuntador);
+            }else if(token == "-2"){ //inicio
                 //ignorarlo
-            }else if(token == "-4" || token == "-5"){
-                vci.Add(lexema);
-            }else if(token == "-73"){
-                operadores.Push(lexema);
-            }else if(token == "-74"){
-                while(operadores.Peek() != "-73"){
+            }else if(token == "-4" || token == "-5"){ //leer y escribir
+                vci.Add(nombreTk);
+            }else if(token == "-73"){ // (
+                operadores.Push(nombreTk);
+            }else if(token == "-74"){ // )
+                while(operadores.Peek() != "-73"){ // (
                     operadores.Pop();
-                    vci.Add(lexema);
+                    vci.Add(nombreTk);
                 }
                 operadores.Pop();
-                vci.Add(lexema);
-            }else if(token == "-75"){
-                operadores.Pop();
-                vci.Add(lexema);
-            } else if (lexema == "-3") {
-                /* string condicion = "";
-                string token_siguiente = lexemas[i + 1];
+                vci.Add(nombreTk);
 
-                if (token_siguiente == "-10") {
-                    // Guardar token siguiente momentaneamente
-                    i++;
-                    token_siguiente = lexemas[i + 1];
+                if(evaluarHasta == true){
+                    int dir = direcciones.Pop();
+                    vci.Add(dir.ToString()); //dir -> dirección guardada
+                    string hasta = estatutos.Pop();
+                    vci.Add(hasta);
+                    evaluarHasta = false;
                 }
-
-                for (int j = i + 1; j < lexemas.Count; j++) {
-                    string lexema_actual = lexemas[j];
-                    condicion += lexema_actual;
-
-                    if (lexema_actual == ";") {
-                        vci.Add(condicion);
-                        vci.Add(direcciones.ToString());
-                        vci.Add("KwHasta");
-                        i = j;
-                        break;
-                    }
-                }*/
-            } else {
-                vci.Add(lexema);
+            }else if(token == "-75"){ // ;
+                while(operadores.Count > 0){
+                    operadores.Pop();
+                    vci.Add(nombreTk);
+                }
+            } else if (nombreTk == "-3"){ //fin
+                //ignorar
+                if(tokens[i + 1] == "-10"){
+                    evaluarHasta = true;
+                }
+            }else {
+                vci.Add(nombreTk);
+                
             }
         }
     }
