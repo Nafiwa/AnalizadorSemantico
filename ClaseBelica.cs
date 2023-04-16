@@ -102,11 +102,11 @@ class Vci{
                 vci.Add(nombreTk);
             }else if (token == "-73"){ // (
                 operadores.Push(nombreTk);
+                prioridades.Push(PrioridadDe(token));
             }else if (token == "-74"){ // )
-                while (operadores.Peek() != "-73"){ // (
-                    operadores.Pop();
+                while (operadores.Peek() != "("){ // (
+                    vci.Add(operadores.Pop());
                     prioridades.Pop();
-                    vci.Add(nombreTk);
                 }
                 operadores.Pop();
                 prioridades.Pop();
@@ -200,8 +200,9 @@ class Vci{
         //string[] lineas = File.ReadAllLines("./txts/tablaTokensViernes.txt");
         //string[] lineas = File.ReadAllLines("./txts/tokens_noerrors.txt");
         //string[] lineas = File.ReadAllLines("./txts/tokens.txt");
-        //string[] lineas = File.ReadAllLines("./txts/Prueba2.txt");
-        string[] lineas = File.ReadAllLines("./txts/Prueba3.txt");
+        string[] lineas = File.ReadAllLines("./txts/Prueba2.txt");
+        //string[] lineas = File.ReadAllLines("./txts/Prueba3.txt");
+        //string[] lineas = File.ReadAllLines("./txts/vciPrueba.txt");
 
         bool dentroDelCuerpo = false;
 
