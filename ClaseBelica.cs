@@ -91,11 +91,13 @@ class Vci{
         for (int i = 0; i < tokens.Count; i++){
             string token = tokens[i];
             string nombreTk = nombresTk[i];//?
-            apuntador = vci.Count - 1;
+            apuntador = vci.Count;
 
             if (token == "-9"){ // repetir
                 estatutos.Push(nombreTk);
                 direcciones.Push(apuntador);
+            }else if (token == "-10"){ // hasta
+                
             }else if (token == "-2"){ //inicio
                 //ignorarlo
             }else if (token == "-4" || token == "-5"){ //leer y escribir
@@ -114,8 +116,7 @@ class Vci{
                 if (evaluarHasta == true){
                     int dir = direcciones.Pop();
                     vci.Add(dir.ToString()); //dir -> dirección guardada
-                    string hasta = estatutos.Pop();
-                    vci.Add(hasta);
+                    vci.Add("hasta");
                     evaluarHasta = false;
                 }
             }else if (token == "-75"){ // ;
@@ -129,6 +130,9 @@ class Vci{
                 // Checas a quien corresponde. Haces pop a la pila de estatutos
                 if(estatutos.Count > 0){
                     repetir = estatutos.Pop();
+                    if (repetir == "repetir"){
+                        evaluarHasta = true;
+                    }
                 }
             }else if(EsOperador(token) == true){
                 // Si la pila de operadores está vacía, agregas el operador
@@ -148,8 +152,6 @@ class Vci{
                     operadores.Push(nombreTk);
                     prioridades.Push(PrioridadDe(token));
                 }
-                
-                    
             }else{
                 vci.Add(nombreTk);
             }
@@ -200,9 +202,9 @@ class Vci{
         //string[] lineas = File.ReadAllLines("./txts/tablaTokensViernes.txt");
         //string[] lineas = File.ReadAllLines("./txts/tokens_noerrors.txt");
         //string[] lineas = File.ReadAllLines("./txts/tokens.txt");
-        string[] lineas = File.ReadAllLines("./txts/Prueba2.txt");
+        //string[] lineas = File.ReadAllLines("./txts/Prueba2.txt");
         //string[] lineas = File.ReadAllLines("./txts/Prueba3.txt");
-        //string[] lineas = File.ReadAllLines("./txts/vciPrueba.txt");
+        string[] lineas = File.ReadAllLines("./txts/vciPrueba.txt");
 
         bool dentroDelCuerpo = false;
 
