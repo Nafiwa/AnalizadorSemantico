@@ -158,13 +158,16 @@ class Vci{
         }
     }
     
-    public static void ImprimirVCI()
-    {
-        foreach (string celda in vci)
-        {
-            Console.Write(celda + " ");
+    public static void ImprimirVCI(){
+        using (StreamWriter sw = new StreamWriter("./txts/Vci.txt")){
+            sw.WriteLine(string.Join(" | ", vci)); // Guardamos los elementos separados por '|'
+            sw.WriteLine(string.Join(" | ", Enumerable.Range(0, vci.Count))); // Guardamos los índices
         }
+        Console.WriteLine(string.Join(" | ", vci)); // Imprimimos los elementos separados por '|'
+        Console.WriteLine(string.Join(" | ", Enumerable.Range(0, vci.Count))); // Imprimimos los índices
     }
+ 
+
 
     static bool EsOperador(string token){
         switch(token){
