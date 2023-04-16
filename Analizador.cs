@@ -3,6 +3,7 @@ using System.Text;
 public class Analizador {
     Token[] tokens;
     Simbolo[]? simbolos; // puede estar nulo
+    //Vci [] vciList;
 
     /*public static void Main(String[] args) {
         Analizador p = new Analizador();
@@ -170,6 +171,7 @@ public class Analizador {
         // Este metodo crea los archivos de salida con los datos de las tablas de tokens y simbolos
         File.WriteAllText("./txts/tabla_tokens.txt", tokensFormato());
         File.WriteAllText("./txts/tabla_simbolos.txt", simbolosFormato());
+        //File.WriteAllText("./txts/Vci.txt", vciFormato());
     }
 
     string tokensFormato() {
@@ -185,6 +187,13 @@ public class Analizador {
             sb.AppendLine(simbolo.ToString());
         return sb.ToString();
     }
+
+    /*string vciFormato(){
+        var sb = new StringBuilder();
+        foreach (var vci in vciList!)
+            sb.AppendLine(vci.ToString());
+        return sb.ToString();
+    } */
 
     public class Token {
         string? nombre;
