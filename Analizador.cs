@@ -2,33 +2,11 @@ using System.Text;
 
 public class Analizador {
     Token[] tokens;
-    Simbolo[]? simbolos; // puede estar nulo
+    public Simbolo[] simbolos; 
     //Vci [] vciList;
 
-    /*public static void Main(String[] args) {
-        Analizador p = new Analizador();
 
-        Token[] identificadores = p.getIdentificadores(); // Obtener identificadores
-        p.setTablaDeSimbolos(identificadores); // Crear tabla de simbolos basada en los identificadores
-        p.validarCuerpo(); // Validar que los identificadores esten declarados y que sean del tipo correcto, si no, terminar el programa
-
-        Console.WriteLine("\nIdentificadores:" );
-        Console.WriteLine("Nombre: " + "|#token:" + "  |°tabla " + "|linea:");
-        Mostrar(identificadores);
-
-        Console.WriteLine("\nSimbolos:");
-        Mostrar(p.simbolos!);
-
-        p.crearArchivos(); // Crear archivos de salida
-
-        static void Mostrar<T>(IEnumerable<T> arreglo) {
-            for (int i = 0; i < arreglo.Count(); i++) {
-                Console.WriteLine(arreglo.ElementAt(i));
-            }
-        }
-    }*/
-
-    Analizador() {
+    public Analizador() {
         // Leer tabla de tokens separados por '|'
         //string[] lineas = File.ReadAllLines("./txts/nuevatabla.txt");
         //string[] lineas = File.ReadAllLines("./txts/tablaTokensViernes.txt");
@@ -46,7 +24,7 @@ public class Analizador {
         }
     }
 
-    Token[] getIdentificadores() {
+    public Token[] getIdentificadores() {
         // Buscar identificadores, ignorando los que estan despues de la palabra reservada "inicio"
         bool buscar = false;
 
@@ -80,7 +58,7 @@ public class Analizador {
         return identificadores.ToArray();
     }
 
-    void setTablaDeSimbolos(Token[] identificadores) {
+    public void setTablaDeSimbolos(Token[] identificadores) {
         // Crear tabla de simbolos del tamaño de la cantidad de identificadores
         simbolos = new Simbolo[identificadores.Length];
         
@@ -120,7 +98,7 @@ public class Analizador {
         }
     }
 
-    void validarCuerpo() {
+    public void validarCuerpo() {
         // Buscar que los identificadores esten declarados y que sean del tipo correcto en el cuerpo del programa
         bool buscar = false;
 
@@ -167,7 +145,7 @@ public class Analizador {
         }
     }
 
-    void crearArchivos() {
+    public void crearArchivos() {
         // Este metodo crea los archivos de salida con los datos de las tablas de tokens y simbolos
         File.WriteAllText("./txts/tabla_tokens.txt", tokensFormato());
         File.WriteAllText("./txts/tabla_simbolos.txt", simbolosFormato());
@@ -195,80 +173,4 @@ public class Analizador {
         return sb.ToString();
     } */
 
-    public class Token {
-        string? nombre;
-        int token;
-        int tabla;
-        int linea;
-
-        public void setLexema(string nombre) {
-            this.nombre = nombre;
-        }
-
-        public void setToken(int token) {
-            this.token = token;
-        }
-
-        public void setTabla(int tabla) {
-            this.tabla = tabla;
-        }
-
-        public void setLinea(int linea) {
-            this.linea = linea;
-        }
-
-        public string getNombre() {
-            return nombre!;
-        }
-
-        public int getToken() {
-            return token;
-        }
-
-        public int getTabla() {
-            return tabla;
-        }
-
-        public int getLinea() {
-            return linea;
-        }
-
-        public override string ToString() {
-            return nombre + "       |" + token + "      |" + tabla + "      |" + linea;
-        }
-    }
-
-    public class Simbolo {
-        string? id;
-        int token;
-        string? valor;
-
-        public void setId(string id) {
-            this.id = id;
-        }
-
-        public void setToken(int token) {
-            this.token = token;
-        }
-
-        public void setValor(string valor) {
-            this.valor = valor;
-        }
-
-        public string getId() {
-            return id!;
-        }
-
-        public int getToken() {
-            return token;
-        }
-
-        public string getValor() {
-            return valor!;
-        }
-
-        public override string ToString() {
-            return id + "   |" + token + "  |" + valor;
-        }
-    }
 }
