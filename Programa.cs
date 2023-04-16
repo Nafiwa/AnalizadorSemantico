@@ -1,5 +1,14 @@
 public class Programa{
     public static void Main(String[] args) {
+        VCI();
+    }
+
+    public static void VCI() {
+        Vci.VciList();
+        Vci.ImprimirVCI();
+    }
+
+    public static void AnalisisSemantico() {
         Analizador p = new Analizador();
 
         Token[] identificadores = p.getIdentificadores(); // Obtener identificadores

@@ -62,18 +62,18 @@ if(Espar(j) == true){
 
 
 class Vci{
-    static void Main(){
-        //pilas
-        Stack<string> operadores = new Stack<string>();
-        Stack<int> prioridades = new Stack<int>();
-        Stack<string> estatutos = new Stack<string>();
-        Stack<int> direcciones = new Stack<int>();
-
+    //pilas
+        static Stack<string> operadores = new Stack<string>();
+        static Stack<int> prioridades = new Stack<int>();
+        static Stack<string> estatutos = new Stack<string>();
+        static Stack<int> direcciones = new Stack<int>();
+        static List<string> vci = new List<string>();
+        static List<string> nombresTk = new List<string>();
+        static List<string> tokens = new List<string>();
+    public static void VciList(){
         int apuntador = 0;
-
-        List<string> vci = new List<string>();
-        List<string> nombresTk = new List<string>();
-        List<string> tokens = new List<string>();
+        bool evaluarHasta = false;
+        string repetir;
         /*tokens a usar
         -2 inicio
         -3 fin
@@ -85,14 +85,15 @@ class Vci{
         -73 (
         -74 )
         -75 ; */
-        bool evaluarHasta = false;
+        
+        LeerArchivo();
 
         for (int i = 0; i < tokens.Count; i++){
             string token = tokens[i];
             string nombreTk = nombresTk[i];//?
             apuntador = vci.Count - 1;
 
-            if (token == "-9"){
+            if (token == "-9"){ // repetir
                 estatutos.Push(nombreTk);
                 direcciones.Push(apuntador);
             }else if (token == "-2"){ //inicio
@@ -104,10 +105,11 @@ class Vci{
             }else if (token == "-74"){ // )
                 while (operadores.Peek() != "-73"){ // (
                     operadores.Pop();
+                    prioridades.Pop();
                     vci.Add(nombreTk);
                 }
                 operadores.Pop();
-                vci.Add(nombreTk);
+                prioridades.Pop();
 
                 if (evaluarHasta == true){
                     int dir = direcciones.Pop();
@@ -118,52 +120,110 @@ class Vci{
                 }
             }else if (token == "-75"){ // ;
                 while (operadores.Count > 0){
-                    operadores.Pop();
-                    vci.Add(nombreTk);
+                    string hamburgesa = operadores.Pop();
+                    prioridades.Pop();
+                    vci.Add(hamburgesa);
                 }
-            }else if (nombreTk == "-3"){ //fin
+            }else if (token == "-3"){ //fin
                 //ignorar
-                if (tokens[i + 1] == "-10"){
-                    evaluarHasta = true;
+                // Checas a quien corresponde. Haces pop a la pila de estatutos
+                if(estatutos.Count > 0){
+                    repetir = estatutos.Pop();
                 }
             }else if(EsOperador(token) == true){
-                operadores.Push(token); 
-                prioridades.Push(PrioridadDe(token));               
+                // Si la pila de operadores está vacía, agregas el operador
+                if(operadores.Count == 0){
+                    operadores.Push(nombreTk);
+                    prioridades.Push(PrioridadDe(token)); 
+                }else if(prioridades.Peek() < PrioridadDe(token)){
+                    // Si la prioridad del tope es MENOR a la del operador acutal, se hace push
+                    operadores.Push(nombreTk);
+                    prioridades.Push(PrioridadDe(token));
+                }else{
+                    // Si no, se hace pop hasta que la prioridad del tope sea menor a la del operador actual y luego se hace push
+                    while(prioridades.Peek() >= PrioridadDe(token)){
+                        vci.Add(operadores.Pop());
+                        prioridades.Pop();
+                    }
+                    operadores.Push(nombreTk);
+                    prioridades.Push(PrioridadDe(token));
+                }
+                
+                    
             }else{
                 vci.Add(nombreTk);
-
-            }
-        }
-        
-        bool EsOperador(string token){
-            switch(token){
-                case "-24" or "-25": return true;
-                case "-31" or "-32": return true;
-                case "-21" or "-22": return true; 
-                case "-33" or "-34": return true;
-                case "-35" or "-36": return true;
-                case "-43": return true;
-                case "-41": return true;
-                case "-42": return true;
-                default : return false;
-            }
-        }
-
-        int PrioridadDe(string operador){
-            
-            switch (operador){
-                case "-21" or "-22": return 60; 
-                case "-24" or "-25": return 50;
-                case "-31" or "-32": return 40;
-                case "-33" or "-34": return 40;
-                case "-35" or "-36": return 40;
-                case "-43": return 30;
-                case "-41": return 20;
-                case "-42": return 10;
-                default : return 0;
-                //case "-25": return 50;
             }
         }
     }
+    
+    public static void ImprimirVCI()
+    {
+        foreach (string celda in vci)
+        {
+            Console.Write(celda + " ");
+        }
+    }
 
+    static bool EsOperador(string token){
+        switch(token){
+            case "-24" or "-25": return true;
+            case "-31" or "-32": return true;
+            case "-21" or "-22": return true; 
+            case "-33" or "-34": return true;
+            case "-35" or "-36": return true;
+            case "-26": return true;
+            case "-43": return true;
+            case "-41": return true;
+            case "-42": return true;
+            default : return false;
+        }
+    }
+
+    static int PrioridadDe(string operador){
+        switch (operador){
+            case "-21" or "-22": return 60;
+            case "-24" or "-25": return 50;
+            case "-31" or "-32": return 40;
+            case "-33" or "-34": return 40;
+            case "-35" or "-36": return 40;
+            case "-43": return 30;
+            case "-41": return 20;
+            case "-42": return 10;
+            case "-26": return 0;
+            default : return 0;
+            //case "-25": return 50;
+        }
+    }
+
+    static void LeerArchivo(){
+        //string[] lineas = File.ReadAllLines("./txts/nuevatabla.txt");
+        //string[] lineas = File.ReadAllLines("./txts/tablaTokensViernes.txt");
+        //string[] lineas = File.ReadAllLines("./txts/tokens_noerrors.txt");
+        //string[] lineas = File.ReadAllLines("./txts/tokens.txt");
+        //string[] lineas = File.ReadAllLines("./txts/Prueba2.txt");
+        string[] lineas = File.ReadAllLines("./txts/Prueba3.txt");
+
+        bool dentroDelCuerpo = false;
+
+        for(int i = 0; i < lineas.Length ; i++){
+            // a, -51, -2, 5
+            // 0,   1,  2, 3
+
+            // Añadir a las listas de tokens si esta dentro del cuerpo
+            string[] separador = lineas[i].Split("|");
+
+            string nombreTk = separador[0];
+            string token = separador[1]; // 🙈
+            
+            if(token == "-2"){
+                dentroDelCuerpo = true;
+                continue;
+            }
+
+            if (dentroDelCuerpo == true) {
+                nombresTk.Add(nombreTk);
+                tokens.Add(token);
+            }
+        }
+    }
 }
