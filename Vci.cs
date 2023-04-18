@@ -41,15 +41,16 @@ class Vci{
             string nombreTk = nombresTk[i];//?
             apuntador = vci.Count;
 
-            // si el token es repetir 
+            //si el token es repetir, hace un push en la pila de estatutos y anota su dirección 
             if (token == "-9"){ // repetir
                 estatutos.Push(nombreTk);
                 direcciones.Push(apuntador);
             }else if (token == "-10"){ // hasta
-                
+            //la regla se aplica despues de escribir la condición
+            //y se encuentre con el ')' 
             }else if (token == "-2"){ //inicio
-                //ignorarlo
-            }else if (token == "-4" || token == "-5"){ //leer y escribir
+                //El token inicio se ignora
+            }else if (token == "-4" || token == "-5"){ //leer y escribir, se añaden directamente a vci
                 vci.Add(nombreTk);
             }else if (token == "-73"){ // (
                 operadores.Push(nombreTk);
@@ -171,7 +172,7 @@ class Vci{
             string[] separador = lineas[i].Split("|");
 
             string nombreTk = separador[0];
-            string token = separador[1]; // 🙈
+            string token = separador[1]; // 🙈❤
             
             if(token == "-2"){
                 dentroDelCuerpo = true;
