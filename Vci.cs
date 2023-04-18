@@ -110,9 +110,11 @@ class Vci{
     public static void ImprimirVCI(){
 
         using (StreamWriter sw = new StreamWriter("./txts/Vci.txt")){
+            sw.WriteLine("VCI: " + vci.Count + "celdas usadas");
             sw.WriteLine(string.Join(" | ", vci)); // Guardamos los elementos separados por '|'
             sw.WriteLine(string.Join(" | ", Enumerable.Range(0, vci.Count))); // Guardamos los índices
         }
+        Console.WriteLine("VCI: " + vci.Count + "celdas usadas");
         Console.WriteLine(string.Join(" | ", vci)); // Imprimimos los elementos separados por '|'
         Console.WriteLine(string.Join(" | ", Enumerable.Range(0, vci.Count))); // Imprimimos los índices
     }
