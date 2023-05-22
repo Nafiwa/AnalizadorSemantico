@@ -73,3 +73,18 @@ C:\Users\Sofia Flores\Documents\8tavo\Nueva carpeta (3)\AnalizadorSemantico\obj\
 C:\Users\Sofia Flores\Documents\8tavo\Nueva carpeta (3)\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.pdb
 C:\Users\Sofia Flores\Documents\8tavo\Nueva carpeta (3)\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.genruntimeconfig.cache
 C:\Users\Sofia Flores\Documents\8tavo\Nueva carpeta (3)\AnalizadorSemantico\obj\Debug\net7.0\ref\AnalizadorSemantico.dll
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\bin\Debug\net7.0\AnalizadorSemantico.exe
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\bin\Debug\net7.0\AnalizadorSemantico.deps.json
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\bin\Debug\net7.0\AnalizadorSemantico.runtimeconfig.json
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\bin\Debug\net7.0\AnalizadorSemantico.dll
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\bin\Debug\net7.0\AnalizadorSemantico.pdb
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.csproj.AssemblyReference.cache
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.AssemblyInfoInputs.cache
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.AssemblyInfo.cs
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.csproj.CoreCompileInputs.cache
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.dll
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\refint\AnalizadorSemantico.dll
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.pdb
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.genruntimeconfig.cache
+C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\ref\AnalizadorSemantico.dll

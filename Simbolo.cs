@@ -1,10 +1,10 @@
  public class Simbolo {
-        string id;
+        string simbolo;
         int token;
         string valor;
 
         public void setId(string id) {
-            this.id = id;
+            this.simbolo = id;
         }
 
         public void setToken(int token) {
@@ -16,7 +16,7 @@
         }
 
         public string getId() {
-            return id!;
+            return simbolo!;
         }
 
         public int getToken() {
@@ -28,6 +28,6 @@
         }
 
         public override string ToString() {
-            return id + "   |" + token + "  |" + valor;
+            return simbolo + "   |" + token + "  |" + valor;
         }
     }
