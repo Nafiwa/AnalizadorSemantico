@@ -30,19 +30,31 @@ class ejecucion{
 
             }
             else if (token is -4) { // Es funcion leer
-                // Si el token es "leer", se lee desde la consola y se guarda en la tabla de símbolos
+                // Si el token es "leer", se lee lo que esta en consola y se guarda en la pila
                 string input = Console.ReadLine();
+                pilaEjecucion.Push(input);
+
                 
             }
-            else if (token is ) { // Es funcion escribir
+            else if (token is -5) { // Es funcion escribir
+            // Si el token es "escribir", se imprime lo que esta en la pila
+                Console.WriteLine(pilaEjecucion.Pop());
 
             }
-            else if (token is ) { // Es palabra reservada hasta
-
+            else if (token is -10 ) { // Es palabra reservada hasta 
+            // Si el token es "hasta", se evalua la condicion de la pila
+                string condicion = pilaEjecucion.Pop();
+                if (condicion == "verdadero") {
+                    // Si la condicion es verdadera, se continua con la ejecucion
+                }
+                else {
+                    // Si la condicion es falsa, se salta a la linea del fin_hasta
+                    while (vci[i] != "fin_hasta") {
+                        i++;
+                    }
+                }
             }
-            else if (token is ) { // 
-
-            }
+            
         }
 
 
