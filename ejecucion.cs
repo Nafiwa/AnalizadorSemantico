@@ -62,6 +62,11 @@ class ejecucion{
 
     }
 
+    //funcion que guarda lo que se lee en consola en el siguiente token
+    static void LeerConsola(){
+        string input = Console.ReadLine();
+        pilaEjecucion.Push(input);
+    }
 
 
     static object Calcular(string operacion)
