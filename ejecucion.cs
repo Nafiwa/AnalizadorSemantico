@@ -144,6 +144,7 @@ public class Ejecucion{
     static void EscribirTablaDeSimbolos() {
         using (StreamWriter sw = new StreamWriter("./txts/tabla_simbolos.txt")){
             foreach (Simbolo simbolo in simbolos) {
+                // Guardamos los elementos separados por '|'
                 sw.WriteLine(simbolo.getId() + "|" + simbolo.getToken() + "|" + simbolo.getValor());
             }
         }

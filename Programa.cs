@@ -6,7 +6,8 @@ public class Programa{ // Te pedi permiso, hola como estas uwuwuwuwuwuuwuwuwuwuw
         //Console.WriteLine("ETAPA 2: VCI");
         //VCI();
         //Console.WriteLine("\n");
-        //Console.WriteLine("ETAPA 3: EJECUCION");
+        Console.WriteLine("ETAPA 3: EJECUCION");
+
         EjecutarVCI();
     }
 
