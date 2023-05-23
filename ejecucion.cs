@@ -17,15 +17,19 @@ public class Ejecucion{
             string nombreToken = vci[i];            
             int token = TokenDe(nombreToken);
 
-            Console.WriteLine(string.Join(", ", pilaEjecucion));
-
             if(token is -51 or -52 or -53 or -54) { // Es identificador
                 pilaEjecucion.Push(nombreToken);
             }
             else if (token is -61 or -62 or -63 or -64 or -65) { //Es una constante
                 pilaEjecucion.Push(vci[i]);
             }
-            else if (token is -21 or -22 or -23 or -24 or -25 or -26) { // Es un operador
+            else if (token is -26){// es un operador de asignacion
+                string valor = pilaEjecucion.Pop();
+                string identificador = pilaEjecucion.Pop();
+                int indiceSimbolos = Array.IndexOf(simbolos.Select(s => s.getId()).ToArray(), identificador);
+                simbolos[indiceSimbolos].setValor(valor);
+            }
+            else if (token is -21 or -22 or -23 or -24 or -25) { // Es un operador
                 //guarda los simbolos en unas variables para poder hacer la operación
                 string operador = nombreToken;
                 string dos = pilaEjecucion.Pop();
@@ -37,8 +41,11 @@ public class Ejecucion{
                     uno = ValorDe(uno);
                 }
                 //se guarda el resultado de la operación 
-                var resultado = Calcular(uno + operador + dos);
+                string operacion = uno + operador + dos;
+                object resultado = Calcular(operacion);
 
+                //se guarda el resultado en la pila
+                pilaEjecucion.Push(resultado.ToString());
             }
             else if (token is -4) { // Es funcion leer
                 
@@ -107,7 +114,6 @@ public class Ejecucion{
 
     static object Calcular(string operacion)
     {
-        Console.WriteLine("Operacion: " + operacion);
         // Evaluar operacion
         DataTable dt = new DataTable();
         var v = dt.Compute(operacion, "");
@@ -132,14 +138,9 @@ public class Ejecucion{
     }
 
     public static int TokenDe(string token) {
-        // Si el input es un identificador
-        if (Regex.IsMatch(token, "^[a-zA-Z]+$"))
-        {
-            // Busca su token en la tabla de simbolos
-            return simbolos.Where(s => s.getId() == token).Select(s => s.getToken()).FirstOrDefault();
-        }
+        
         // Si el input es la funcion escribir
-        else if (Regex.IsMatch(token, "escribir"))
+        if (Regex.IsMatch(token, "escribir"))
         {
             return -5;
         }
@@ -252,6 +253,12 @@ public class Ejecucion{
         else if (Regex.IsMatch(token, "hasta"))
         {
             return -10;
+        }
+        // Si el input es un identificador
+        else if (Regex.IsMatch(token, "^[a-zA-Z]+$"))
+        {
+            // Busca su token en la tabla de simbolos
+            return simbolos.Where(s => s.getId() == token).Select(s => s.getToken()).FirstOrDefault();
         }
 
         // Return 0 if no pattern matches
