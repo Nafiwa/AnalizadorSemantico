@@ -6,12 +6,12 @@ a
 1
 +
 =
-write
+escribir
 a
 a
 2
 >
 3
 hasta
-write
+escribir
 a

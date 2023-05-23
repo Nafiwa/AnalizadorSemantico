@@ -60,7 +60,7 @@ public class Ejecucion{
             else if (token is -10) { // Es palabra reservada hasta 
                 // Si el token es "hasta", se evalua la condicion de la pila
                 int indice = Convert.ToInt32(pilaEjecucion.Pop()); // Pop a la direccion del hasta
-                bool condicion = Convert.ToBoolean(pilaEjecucion.Pop());
+                bool condicion = Convert.ToBoolean(pilaEjecucion.Pop()); 
                 
                 if (condicion == true) {
                     // Si la condicion es verdadera, se brinca al indice del hasta
@@ -96,9 +96,10 @@ public class Ejecucion{
         string input = Console.ReadLine(); //esto va a leer lo que se escriba en consola
         string siguienToken = vci[indice + 1];
         var indiceSimbolos = Array.IndexOf(simbolos, siguienToken);
-        simbolos[indiceSimbolos].setValor(input); //esto actualiza  tabla de simbolos??
+        simbolos[indiceSimbolos].setValor(input); //se guarda el valor en la tabla de simbolos
     }
 
+    //funcion que imprime en consola lo que este en el siguiente token
     static void EscrituraConsola(string siguienteToken){
         // Si el token es "escribir", se imprime lo que esta en el siguiente token de vci
 
@@ -112,7 +113,7 @@ public class Ejecucion{
         }
     }
 
-
+    //funcion que va a calcular la operación
     static object Calcular(string operacion)
     {
         // Evaluar operacion
@@ -121,7 +122,7 @@ public class Ejecucion{
         return v;
     }
 
-
+    //función que va a leer los archivos a evaluar o utilizar
 
     static void LeerArchivos(){
         vci = File.ReadAllLines("./txts/Vci.txt");
@@ -130,9 +131,6 @@ public class Ejecucion{
         simbolos = new Simbolo[lineas.Length];
         for (int i = 0; i < lineas.Length; i++) {
             string[] linea = lineas[i].Split('|');
-            for (int j = 0; j < linea.Length; j++) {
-                linea[j] = linea[j].Trim().ToLower();
-            }
             // Simbolo | Token | Valor 
             simbolos[i] = new Simbolo();
             simbolos[i].setId(linea[0]);
@@ -144,7 +142,6 @@ public class Ejecucion{
     static void EscribirTablaDeSimbolos() {
         using (StreamWriter sw = new StreamWriter("./txts/tabla_simbolos.txt")){
             foreach (Simbolo simbolo in simbolos) {
-                // Guardamos los elementos separados por '|'
                 sw.WriteLine(simbolo.getId() + "|" + simbolo.getToken() + "|" + simbolo.getValor());
             }
         }
