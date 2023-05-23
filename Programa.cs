@@ -1,5 +1,12 @@
 public class Programa{ // Te pedi permiso, hola como estas uwuwuwuwuwuuwuwuwuwuwu
     public static void Main(String[] args) {
+        //Console.WriteLine("ETAPA 1: ANALISIS SEMANTICO");
+        //AnalisisSemantico();
+        //Console.WriteLine("\n");
+        //Console.WriteLine("ETAPA 2: VCI");
+        //VCI();
+        //Console.WriteLine("\n");
+        //Console.WriteLine("ETAPA 3: EJECUCION");
         EjecutarVCI();
     }
 

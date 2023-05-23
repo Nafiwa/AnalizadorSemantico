@@ -29,7 +29,7 @@ public class Ejecucion{
                 int indiceSimbolos = Array.IndexOf(simbolos.Select(s => s.getId()).ToArray(), identificador);
                 simbolos[indiceSimbolos].setValor(valor);
             }
-            else if (token is -21 or -22 or -23 or -24 or -25) { // Es un operador
+            else if (token is -21 or -22 or -23 or -24 or -25 or -31 or -32 or -33 or -34 or -35 or -36 or -41 or -42 or -43) { // Es un operador
                 //guarda los simbolos en unas variables para poder hacer la operación
                 string operador = nombreToken;
                 string dos = pilaEjecucion.Pop();
@@ -60,18 +60,19 @@ public class Ejecucion{
             else if (token is -10) { // Es palabra reservada hasta 
                 // Si el token es "hasta", se evalua la condicion de la pila
                 int indice = Convert.ToInt32(pilaEjecucion.Pop()); // Pop a la direccion del hasta
-                string condicion = pilaEjecucion.Pop();
+                bool condicion = Convert.ToBoolean(pilaEjecucion.Pop());
                 
-                if (condicion == "verdadero") {
+                if (condicion == true) {
                     // Si la condicion es verdadera, se brinca al indice del hasta
                     i = indice - 1;
                 }
-                
             }
             else { // Si es direccion
                 pilaEjecucion.Push(vci[i]);
             }
         }
+
+        EscribirTablaDeSimbolos();
     }
     
     static string ValorDe(string identificador)
@@ -129,11 +130,22 @@ public class Ejecucion{
         simbolos = new Simbolo[lineas.Length];
         for (int i = 0; i < lineas.Length; i++) {
             string[] linea = lineas[i].Split('|');
+            for (int j = 0; j < linea.Length; j++) {
+                linea[j] = linea[j].Trim().ToLower();
+            }
             // Simbolo | Token | Valor 
             simbolos[i] = new Simbolo();
             simbolos[i].setId(linea[0]);
             simbolos[i].setToken(Convert.ToInt32(linea[1]));
             simbolos[i].setValor(linea[2]);
+        }
+    }
+
+    static void EscribirTablaDeSimbolos() {
+        using (StreamWriter sw = new StreamWriter("./txts/tabla_simbolos.txt")){
+            foreach (Simbolo simbolo in simbolos) {
+                sw.WriteLine(simbolo.getId() + "|" + simbolo.getToken() + "|" + simbolo.getValor());
+            }
         }
     }
 
