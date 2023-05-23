@@ -1,79 +1,116 @@
-using System.Text.RegularExpressions;
 using System.Data;
+using System.Text.RegularExpressions;
+using System.Linq;
+using System.Collections;
 
-class ejecucion{
+public class Ejecucion{
 
     
     static Stack<string> pilaEjecucion = new Stack<string>();
     static string[] vci;
     static Simbolo[] simbolos; 
 
-    static void Execute(){
+    public static void Ejecutar(){
         LeerArchivos();
 
         for(int i = 0; i < vci.Length; i++){
             string nombreToken = vci[i];            
             int token = TokenDe(nombreToken);
 
+            Console.WriteLine(string.Join(", ", pilaEjecucion));
+
             if(token is -51 or -52 or -53 or -54) { // Es identificador
-                pilaEjecucion.Push(vci[i]);
+                pilaEjecucion.Push(nombreToken);
             }
             else if (token is -61 or -62 or -63 or -64 or -65) { //Es una constante
                 pilaEjecucion.Push(vci[i]);
             }
             else if (token is -21 or -22 or -23 or -24 or -25 or -26) { // Es un operador
+                //guarda los simbolos en unas variables para poder hacer la operación
                 string operador = nombreToken;
                 string dos = pilaEjecucion.Pop();
+                if (TokenDe(dos) is -51 or -52 or -53 or -54) { // Si es identificador, buscar su valor en la tabla de simbolos
+                    dos = ValorDe(dos);
+                }
                 string uno = pilaEjecucion.Pop();
-
+                if (TokenDe(uno) is -51 or -52 or -53 or -54) { // Si es identificador, buscar su valor en la tabla de simbolos
+                    uno = ValorDe(uno);
+                }
+                //se guarda el resultado de la operación 
                 var resultado = Calcular(uno + operador + dos);
 
             }
             else if (token is -4) { // Es funcion leer
+                
                 // Si el token es "leer", se lee lo que esta en consola y se guarda en la pila
-                string input = Console.ReadLine();
-                pilaEjecucion.Push(input);
-
+                LeerConsola(i);
                 
             }
             else if (token is -5) { // Es funcion escribir
-            // Si el token es "escribir", se imprime lo que esta en la pila
-                Console.WriteLine(pilaEjecucion.Pop());
-
+                string siguienteToken = vci[++i]; // ++ para que se brinque el siguiente token
+                EscrituraConsola(siguienteToken);
             }
-            else if (token is -10 ) { // Es palabra reservada hasta 
-            // Si el token es "hasta", se evalua la condicion de la pila
+            else if (token is -10) { // Es palabra reservada hasta 
+                // Si el token es "hasta", se evalua la condicion de la pila
+                int indice = Convert.ToInt32(pilaEjecucion.Pop()); // Pop a la direccion del hasta
                 string condicion = pilaEjecucion.Pop();
+                
                 if (condicion == "verdadero") {
-                    // Si la condicion es verdadera, se continua con la ejecucion
+                    // Si la condicion es verdadera, se brinca al indice del hasta
+                    i = indice - 1;
                 }
-                else {
-                    // Si la condicion es falsa, se salta a la linea del fin_hasta
-                    while (vci[i] != "fin_hasta") {
-                        i++;
-                    }
-                }
+                
             }
-            
+            else { // Si es direccion
+                pilaEjecucion.Push(vci[i]);
+            }
         }
-
-
-
-
+    }
+    
+    static string ValorDe(string identificador)
+    {
+        // Busca el identificador en la tabla de simbolos
+        Simbolo simbolo = simbolos.Where(s => s.getId() == identificador).FirstOrDefault();
+        // Si lo encuentra, regresa su valor
+        if (simbolo != null)
+        {
+            return simbolo.getValor();
+        }
+        // Si no, regresa null
+        else
+        {
+            return null;
+        }
     }
 
     //funcion que guarda lo que se lee en consola en el siguiente token
-    static void LeerConsola(){
-        string input = Console.ReadLine();
-        pilaEjecucion.Push(input);
+    static void LeerConsola(int indice){
+        string input = Console.ReadLine(); //esto va a leer lo que se escriba en consola
+        string siguienToken = vci[indice + 1];
+        var indiceSimbolos = Array.IndexOf(simbolos, siguienToken);
+        simbolos[indiceSimbolos].setValor(input); //esto actualiza  tabla de simbolos??
+    }
+
+    static void EscrituraConsola(string siguienteToken){
+        // Si el token es "escribir", se imprime lo que esta en el siguiente token de vci
+
+        if (TokenDe(siguienteToken) is -61 or -62 or -63 or -64) { // Si es constante, se imprime directo
+            Console.WriteLine(siguienteToken);
+        }
+        else { 
+            // Si es identificador, buscar su valor en la tabla de simbolos
+            string valor = ValorDe(siguienteToken);
+            Console.WriteLine(valor);
+        }
     }
 
 
     static object Calcular(string operacion)
     {
+        Console.WriteLine("Operacion: " + operacion);
         // Evaluar operacion
         DataTable dt = new DataTable();
-        var v = dt.Compute(operacion, null);
+        var v = dt.Compute(operacion, "");
         return v;
     }
 

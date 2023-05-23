@@ -1,6 +1,10 @@
-public class Programa{
+public class Programa{ // Te pedi permiso, hola como estas uwuwuwuwuwuuwuwuwuwuwu
     public static void Main(String[] args) {
-        VCI();
+        EjecutarVCI();
+    }
+
+    public static void EjecutarVCI() {
+        Ejecucion.Ejecutar();
     }
 
     public static void VCI() {

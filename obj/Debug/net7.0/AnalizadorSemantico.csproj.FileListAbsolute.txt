@@ -88,3 +88,18 @@ C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\ref
 C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.pdb
 C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.genruntimeconfig.cache
 C:\Users\Sofia Flores\Documents\8tavo\A\AnalizadorSemantico\obj\Debug\net7.0\ref\AnalizadorSemantico.dll
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\bin\Debug\net7.0\AnalizadorSemantico.exe
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\bin\Debug\net7.0\AnalizadorSemantico.deps.json
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\bin\Debug\net7.0\AnalizadorSemantico.runtimeconfig.json
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\bin\Debug\net7.0\AnalizadorSemantico.dll
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\bin\Debug\net7.0\AnalizadorSemantico.pdb
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.csproj.AssemblyReference.cache
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.AssemblyInfoInputs.cache
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.AssemblyInfo.cs
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.dll
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\obj\Debug\net7.0\refint\AnalizadorSemantico.dll
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.pdb
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\obj\Debug\net7.0\AnalizadorSemantico.genruntimeconfig.cache
+C:\Users\User\Documents\8vo Semestre\Lenguajes y automatas II\unidad 4\practica\AnalizadorSemantico\obj\Debug\net7.0\ref\AnalizadorSemantico.dll
