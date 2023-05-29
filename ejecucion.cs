@@ -41,7 +41,7 @@ public class Ejecucion{
                     uno = ValorDe(uno);
                 }
                 //se guarda el resultado de la operación 
-                string operacion = uno + operador + dos;
+                string operacion = uno + " "+ operador + " "+ dos;
                 object resultado = Calcular(operacion);
 
                 //se guarda el resultado en la pila
@@ -75,6 +75,7 @@ public class Ejecucion{
         EscribirTablaDeSimbolos();
     }
     
+    //funcion que regresa el token de un nombre de token
     static string ValorDe(string identificador)
     {
         // Busca el identificador en la tabla de simbolos

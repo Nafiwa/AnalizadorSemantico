@@ -10,7 +10,7 @@ escribir
 a
 a
 2
->
+<
 3
 hasta
 escribir
